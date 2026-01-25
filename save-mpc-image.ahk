@@ -6,8 +6,8 @@ MButton::  ; Binds the middle mouse button to this action
 {
     if WinActive("ahk_class MediaPlayerClassicW")  ; Only activate if MPC-HC is the active window
     {
-        Send("{Click}")
-        Sleep(sleepDuration)
+        ; Send("{Click}")
+        ; Sleep(sleepDuration)
         
         Send("w")
         Sleep(sleepDuration)
