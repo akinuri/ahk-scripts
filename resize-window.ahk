@@ -1,6 +1,6 @@
-^+NumpadAdd::ResizeWin(1.1)
-^+NumpadSub::ResizeWin(0.9)
-^+NumpadEnter::CenterWin(1920, 1080)
+^+NumpadAdd:: ResizeWin(1.1)
+^+NumpadSub:: ResizeWin(0.9)
+^+NumpadEnter:: CenterWin(1920, 1080)
 
 ResizeWin(factor) {
     win := WinGetID("A")
@@ -18,13 +18,13 @@ ResizeWin(factor) {
 
 CenterWin(width, height) {
     win := WinGetID("A")
-    
+
     MonitorGet(, &left, &top, &right, &bottom)
     screenW := right - left
     screenH := bottom - top
-    
+
     centerX := (screenW - width) / 2
     centerY := (screenH - height) / 2
-    
+
     WinMove(centerX, centerY, width, height, win)
 }
