@@ -1,14 +1,31 @@
 ^+NumpadAdd:: ResizeWin(1.1)
 ^+NumpadSub:: ResizeWin(0.9)
+
+#HotIf GetKeyState("x", "P")
+^+NumpadAdd:: ResizeWin(1.1, "x")
+^+NumpadSub:: ResizeWin(0.9, "x")
+#HotIf
+
+#HotIf GetKeyState("z", "P")
+^+NumpadAdd:: ResizeWin(1.1, "y")
+^+NumpadSub:: ResizeWin(0.9, "y")
+#HotIf
+
 ^+NumpadEnter:: CenterWin(1920, 1080, -12.5, -2.5)
 
-ResizeWin(factor) {
+ResizeWin(factor, axis := "xy") {
     win := WinGetID("A")
 
     WinGetPos(&x, &y, &w, &h, win)
 
-    newW := Round(w * factor)
-    newH := Round(h * factor)
+    newW := w
+    newH := h
+
+    if InStr(axis, "x")
+        newW := Round(w * factor)
+
+    if InStr(axis, "y")
+        newH := Round(h * factor)
 
     newX := x - (newW - w) / 2
     newY := y - (newH - h) / 2
