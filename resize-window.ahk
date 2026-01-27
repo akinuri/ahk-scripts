@@ -1,6 +1,11 @@
 ^+NumpadAdd:: ResizeWin(1.1)
 ^+NumpadSub:: ResizeWin(0.9)
 
+^!+Up:: MoveWin(0, -2)
+^!+Down:: MoveWin(0, 2)
+^!+Left:: MoveWin(-2, 0)
+^!+Right:: MoveWin(2, 0)
+
 #HotIf GetKeyState("x", "P")
 ^+NumpadAdd:: ResizeWin(1.1, "x")
 ^+NumpadSub:: ResizeWin(0.9, "x")
@@ -12,6 +17,20 @@
 #HotIf
 
 ^+NumpadEnter:: CenterWin(1920, 1080, -12.5, -2.5)
+
+MoveWin(dx, dy) {
+    win := WinGetID("A")
+
+    MonitorGet(, &left, &top, &right, &bottom)
+    screenW := right - left
+    screenH := bottom - top
+
+    moveX := Round(screenW * dx / 100)
+    moveY := Round(screenH * dy / 100)
+
+    WinGetPos(&x, &y, &w, &h, win)
+    WinMove(x + moveX, y + moveY, w, h, win)
+}
 
 ResizeWin(factor, axis := "xy") {
     win := WinGetID("A")
