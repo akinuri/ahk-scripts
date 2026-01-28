@@ -1,10 +1,10 @@
 ^+NumpadAdd:: ResizeWin(1.1)
 ^+NumpadSub:: ResizeWin(0.9)
 
-^!+Up:: MoveWin(0, -2)
-^!+Down:: MoveWin(0, 2)
-^!+Left:: MoveWin(-2, 0)
-^!+Right:: MoveWin(2, 0)
+^!+Up:: MoveWin(0, -3)
+^!+Down:: MoveWin(0, 3)
+^!+Left:: MoveWin(-3, 0)
+^!+Right:: MoveWin(3, 0)
 
 #HotIf GetKeyState("x", "P")
 ^+NumpadAdd:: ResizeWin(1.1, "x")
