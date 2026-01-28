@@ -16,7 +16,7 @@
 ^+NumpadSub:: ResizeWin(0.9, "y")
 #HotIf
 
-^+NumpadEnter:: CenterWin(1920, 1080, -12.5, -2.5)
+^+NumpadEnter:: CenterWin(1920, 1080, -75, -25)
 
 MoveWin(dx, dy) {
     win := WinGetID("A")
@@ -59,8 +59,11 @@ CenterWin(width, height, xOffsetPct := 0, yOffsetPct := 0) {
     screenW := right - left
     screenH := bottom - top
 
-    centerX := (screenW - width) / 2 + (screenW * xOffsetPct / 100)
-    centerY := (screenH - height) / 2 + (screenH * yOffsetPct / 100)
+    marginX := (screenW - width) / 2
+    marginY := (screenH - height) / 2
+
+    centerX := marginX * (1 + xOffsetPct / 100)
+    centerY := marginY * (1 + yOffsetPct / 100)
 
     WinMove(centerX, centerY, width, height, win)
 }
