@@ -46,7 +46,13 @@ ResizeWin(factor, axis := "xy") {
     if InStr(axis, "y")
         newH := Round(h * factor)
 
-    WinMove(x, y, newW, newH, win)
+    deltaW := newW - w
+    deltaH := newH - h
+
+    newX := x - Round(deltaW / 5)
+    newY := y - Round(deltaH / 5)
+
+    WinMove(newX, newY, newW, newH, win)
 }
 
 CenterWin(width, height, xOffsetPct := 0, yOffsetPct := 0) {
