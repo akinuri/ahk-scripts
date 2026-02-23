@@ -49,8 +49,8 @@ ResizeWin(factor, axis := "xy") {
     deltaW := newW - w
     deltaH := newH - h
 
-    newX := x - Round(deltaW / 5)
-    newY := y - Round(deltaH / 5)
+    newX := x - Round(deltaW * 0.1)
+    newY := y - Round(deltaH * 0.1)
 
     WinMove(newX, newY, newW, newH, win)
 }
