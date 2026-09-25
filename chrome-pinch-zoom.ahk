@@ -106,12 +106,16 @@ PinchAtMouse(direction) {
     ; Zoom out does the reverse.
     ; --------------------------------------------------------
 
+    ; A span change (2x this delta) below ~80px reads as a
+    ; two-finger tap in Chrome and pops a context menu instead of
+    ; zooming, so the delta must stay at 40. The bigger baseline
+    ; keeps the ratio gentler for more symmetric zoom in/out.
     if direction > 0 {
-        startDistance := 45
-        endDistance   := 115
+        startDistance := 100
+        endDistance   := 140
     } else {
-        startDistance := 115
-        endDistance   := 45
+        startDistance := 140
+        endDistance   := 100
     }
 
     steps := 7
@@ -157,10 +161,6 @@ PinchAtMouse(direction) {
     Loop steps {
         t := A_Index / steps
 
-        ; Smoothstep interpolation.
-        ; Makes the movement less abrupt than linear motion.
-        t := t * t * (3 - 2 * t)
-
         distance := Round(
             startDistance
             + (endDistance - startDistance) * t
@@ -189,9 +189,6 @@ PinchAtMouse(direction) {
 
         InjectTouches(contacts)
 
-        ; Keep this short.
-        ; Long delays can make Windows interpret the gesture
-        ; as touch-and-hold / context menu.
         Sleep 3
     }
 
